@@ -17,7 +17,7 @@ def mandelbrot_set(h_range, w_range, max_iterations, t):
 
 	for i in range(max_iterations):
 		# mandelbrot equation
-		z_array = z_array**2 + a_array + np.exp(3.1415j * t/150)/3
+		z_array = z_array**2 + a_array 
 
 		# make a boolean array for diverging indicies of z_array
 		z_size_array = z_array * np.conj(z_array)
