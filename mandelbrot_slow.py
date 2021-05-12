@@ -1,8 +1,7 @@
-#! python3
+#! mandelbrot_slow.py
 # a program to generate an image of the mandelbrot set.  
 # Relatively slow, used for the purpose of clarifying what
 # exactly is being plotted.
-
 
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -17,14 +16,13 @@ def mandelbrot_set(h_range, w_range, max_iterations):
 
 	for h in range(h_range):
 		for w in range(w_range):
+			z = z_array[h][w]
+			a = a_array[h][w]
 			for i in range(max_iterations):
-				z = z_array[h][w]
-				a = a_array[h][w]
-				for i in range(max_iterations):
-					z = z**2 + a
-					if z * np.conj(z) > 4:
-						iterations_till_divergence[h][w] = i
-						break
+				z = z**2 + a
+				if z * np.conj(z) > 4:
+					iterations_till_divergence[h][w] = i
+					break
 
 
 	return iterations_till_divergence
