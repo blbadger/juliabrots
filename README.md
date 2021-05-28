@@ -3,4 +3,4 @@ Programs for displaying and manipulating classic Julia and Mandelbrot set fracta
 
 ![julia](https://blbadger.github.io/fractals/Julia_set_inverted.png)
 
-![Mandelbrot set](https://blbadger.github.io/fractals/mandelbrot_swirl_0.3r.gif)
+![Mandelbrot set](https://blbadger.github.io/fractals/mandelbrot_corrected.png)
