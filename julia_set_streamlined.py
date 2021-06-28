@@ -8,17 +8,25 @@ def julia_set(h_range, w_range, max_iterations, t):
 	a = -0.29609091 + 0.00013*t + 0.62491j + 0.00013j*t
 	iterations_till_divergence = max_iterations + np.zeros(z_array.shape)
 
+	# create array of all True
+	not_already_diverged = iterations_until_divergence < 10000
+
+	# creat array of all False
+	diverged_in_past = iterations_until_divergence > 10000
+
 	for i in range(max_iterations):
-		z_array = z_array**2 + a 
+		z_array = z_array**2 + c_value
 
 		# make a boolean array for diverging indicies of z_array
 		z_size_array = z_array * np.conj(z_array)
-		divergent_array = z_size_array > 4
+		diverging = z_size_array > 4
+		diverging_now = diverging & not_already_diverged
+		iterations_until_divergence[diverging_now] = i
+		not_already_diverged = np.invert(diverging_now) & not_already_diverged
 
-		iterations_till_divergence[divergent_array] = i
-
-		# prevent overflow (numbers -> infinity) for diverging locations
-		z_array[divergent_array] = 0 
+		# prevent overflow (values headed towards infinity) for diverging locations
+		diverged_in_past = diverged_in_past | diverging_now
+		z_array[diverged_in_past] = 0
 
 
 	return iterations_till_divergence
@@ -28,3 +36,4 @@ for t in range(300):
 	plt.axis('off')
 	plt.savefig('{}.png'.format(t), dpi=300)
 	plt.close()
+

@@ -38,3 +38,5 @@ plt.imshow(mandelbrot_set(2000, 2000, 70), cmap='twilight_shifted')
 plt.axis('off')
 plt.savefig('mandelbrot_corrected.png', dpi=300)
 plt.close()
+
+
