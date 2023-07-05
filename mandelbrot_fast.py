@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 plt.style.use('dark_background')
 
-def mandelbrot_set(h_range, w_range, max_iterations, t):
+def mandelbrot_set(h_range, w_range, max_iterations):
 	y, x = np.ogrid[1.6: -1.6: h_range*1j, -2.2: 1.4: w_range*1j]
 	a_array = x + y*1j		#
 	z_array = np.zeros(a_array.shape) 
@@ -19,7 +19,7 @@ def mandelbrot_set(h_range, w_range, max_iterations, t):
 		# mandelbrot equation
 		z_array = z_array**2 + a_array 
 
-		# make a boolean array for diverging indicies of z_array
+		# make a boolean array for diverging indices of z_array
 		z_size_array = z_array * np.conj(z_array)
 		divergent_array = z_size_array > 4
 		diverging_now = divergent_array & not_already_diverged
@@ -28,7 +28,7 @@ def mandelbrot_set(h_range, w_range, max_iterations, t):
 		# prevent overflow (numbers -> infinity) for diverging locations
 		z_array[divergent_array] = 0
 
-		# prevent the a point from diverging again in future iterations
+		# prevent the point from diverging again in future iterations
 		not_already_diverged = np.invert(diverging_now) & not_already_diverged
 
 
