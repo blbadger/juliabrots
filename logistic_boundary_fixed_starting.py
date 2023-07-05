@@ -14,7 +14,7 @@ def logistic_boundaries(h_range, w_range, max_iterations, t):
 	for i in range(max_iterations):
 		x_array = x_array * r_array * (1 - x_array)
 
-		# make a boolean array for diverging indicies of z_array
+		# make a boolean array for diverging indices of z_array
 		x_size_array = x_array * np.conj(x_array)
 		diverging = x_size_array > 100
 		diverging_now = diverging & not_already_diverged
